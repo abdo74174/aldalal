@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SchoolApp.Models.Student>
+
+<h1>Student List</h1>
+
+<a asp-action="AddStudent" class="btn btn-primary">Add New Student</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Roll Number</th>
+            <th>Grade Level</th>
+            <th>Date of Birth</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Name</td>
+                <td>@student.RollNumber</td>
+                <td>@student.GradeLevel</td>
+                <td>@student.DateOfBirth.ToShortDateString()</td>
+                <td>@student.Email</td>
+                <td>@student.PhoneNumber</td>
+                <td>
+                    <a asp-action="EditStudent" asp-route-id="@student.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="DeleteStudent" asp-route-id="@student.Id" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this student?');">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
